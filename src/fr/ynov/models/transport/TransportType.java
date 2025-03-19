@@ -8,9 +8,4 @@ public abstract class TransportType {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Transport: " + id;
-    }
-
 }
