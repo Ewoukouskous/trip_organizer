@@ -8,18 +8,24 @@ public abstract class Activities {
     protected String name;
     protected static String city;
     protected String weather;
+    protected int price;
 
-    public Activities(int id, String name, String city) {
+    public Activities(int id, String name, String city, int price) {
         this.id = id;
         this.name = name;
         Activities.city = city;
         this.weather = new WeatherInfo().toString();
+        this.price = price;
     }
 
         // GETTERS
 
     public static String getCity() {
         return city;
+    }
+
+    public int getPrice() {
+        return price;
     }
 
 }

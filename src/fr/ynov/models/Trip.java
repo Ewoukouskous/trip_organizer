@@ -1,6 +1,7 @@
 package fr.ynov.models;
 
 import fr.ynov.models.accomodation.Accomodation;
+import fr.ynov.models.activities.Activities;
 import fr.ynov.models.transport.TransportType;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Trip {
     private List<String> travelersNameList;
     private List<TransportType> transportsList;
     private List<Accomodation>  accomodationsList;
+    private List<Activities>  activitiesList;
 
     public Trip(int id, String departure, String arrival, Date beginDate, Date endDate) {
         this.id = id;
@@ -58,6 +60,16 @@ public class Trip {
 
     public void addAccomodation(Accomodation accomodation) {
         accomodationsList.add(accomodation);
+    }
+
+    public int calculateAllActivities() {
+        int totalActivities = 0;
+        for (Travelers traveler : travelersList) {
+            for (Activities activities : traveler.getActivities()) {
+                totalActivities += activities.getPrice();
+            }
+        }
+        return totalActivities;
     }
 
 }
