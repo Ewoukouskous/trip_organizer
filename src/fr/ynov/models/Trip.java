@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.time.temporal.ChronoUnit;
 
 public class Trip {
 
@@ -78,7 +79,7 @@ public class Trip {
     public int calculateAllAccomodations() {
         int totalAccomodations = 0;
         for (Accomodation accomodation : accomodationsList) {
-            totalAccomodations += accomodation.getPrice() * travelersList.size();
+            totalAccomodations += (int) ((accomodation.getPrice() * travelersList.size()) * ChronoUnit.DAYS.between(beginDate, endDate));
         }
         return totalAccomodations;
     }
