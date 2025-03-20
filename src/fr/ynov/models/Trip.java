@@ -51,7 +51,8 @@ public class Trip {
         System.out.println("Transports: " + transportsList);
         System.out.println("Accommodations: " + accomodationsList);
         System.out.println("Activities price: " + calculateAllActivities());
-        System.out.println("Accomodations price: " + calculateAllAccomodations());
+        System.out.println("Accommodations price: " + calculateAllAccomodations());
+        System.out.println("Transport price: " + calculateAllTransports());
     }
 
     public void addTravelers(Travelers travelers) {
@@ -82,6 +83,14 @@ public class Trip {
             totalAccomodations += (int) ((accomodation.getPrice() * travelersList.size()) * ChronoUnit.DAYS.between(beginDate, endDate));
         }
         return totalAccomodations;
+    }
+
+    public int calculateAllTransports() {
+        int totalTransport = 0;
+        for (TransportType transport : transportsList) {
+            totalTransport += transport.getPrice();
+        }
+        return totalTransport *  travelersList.size();
     }
 
 }
