@@ -48,6 +48,8 @@ public class Trip {
         System.out.println("Travelers:  " + travelersList);
         System.out.println("Transports: " + transportsList);
         System.out.println("Accommodations: " + accomodationsList);
+        System.out.println("Activities price: " + calculateAllActivities());
+        System.out.println("Accomodations price: " + calculateAllAccomodations());
     }
 
     public void addTravelers(Travelers travelers) {
@@ -70,6 +72,14 @@ public class Trip {
             }
         }
         return totalActivities;
+    }
+
+    public int calculateAllAccomodations() {
+        int totalAccomodations = 0;
+        for (Accomodation accomodation : accomodationsList) {
+            totalAccomodations += accomodation.getPrice() * travelersList.size();
+        }
+        return totalAccomodations;
     }
 
 }

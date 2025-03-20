@@ -16,4 +16,10 @@ public abstract class Accomodation {
         this.endDate = endDate;
     }
 
+        // GETTERS
+
+    public int getPrice() {
+        return price;
+    }
+
 }
