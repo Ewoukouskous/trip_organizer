@@ -37,6 +37,10 @@ public class Travelers {
         return activities;
     }
 
+    public String getName(){
+        return name;
+    }
+
         // SETTERS
 
     public void setActivities(List<Activities> activities) {
