@@ -4,6 +4,7 @@ import fr.ynov.models.accomodation.Accomodation;
 import fr.ynov.models.activities.Activities;
 import fr.ynov.models.transport.TransportType;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,15 +14,15 @@ public class Trip {
     private int id;
     private String departure;
     private String arrival;
-    private Date beginDate;
-    private Date endDate;
+    private LocalDate beginDate;
+    private LocalDate endDate;
     private List<Travelers> travelersList;
     private List<String> travelersNameList;
     private List<TransportType> transportsList;
     private List<Accomodation>  accomodationsList;
     private List<Activities>  activitiesList;
 
-    public Trip(int id, String departure, String arrival, Date beginDate, Date endDate) {
+    public Trip(int id, String departure, String arrival, LocalDate beginDate, LocalDate endDate) {
         this.id = id;
         this.departure = departure;
         this.arrival = arrival;
