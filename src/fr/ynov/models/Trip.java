@@ -53,6 +53,7 @@ public class Trip {
         System.out.println("Activities price: " + calculateAllActivities());
         System.out.println("Accommodations price: " + calculateAllAccomodations());
         System.out.println("Transport price: " + calculateAllTransports());
+        System.out.println("Total price: " + calculateTotalPrice());
     }
 
     public void addTravelers(Travelers travelers) {
@@ -91,6 +92,10 @@ public class Trip {
             totalTransport += transport.getPrice();
         }
         return totalTransport *  travelersList.size();
+    }
+
+    public int calculateTotalPrice() {
+        return calculateAllActivities() + calculateAllTransports() + calculateAllAccomodations();
     }
 
 }
