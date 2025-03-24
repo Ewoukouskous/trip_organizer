@@ -1,7 +1,6 @@
 package fr.ynov.models.accomodation;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Airbnb extends Accomodation {
 

@@ -1,7 +1,6 @@
 package fr.ynov.models.accomodation;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public abstract class Accomodation {
 
@@ -10,7 +9,7 @@ public abstract class Accomodation {
     protected LocalDate beginDate;
     protected LocalDate endDate;
 
-    public Accomodation(int price, String address, LocalDate beginDate, LocalDate endDate) {
+    public  Accomodation(int price, String address, LocalDate beginDate, LocalDate endDate) {
         this.price = price;
         this.address = address;
         this.beginDate = beginDate;

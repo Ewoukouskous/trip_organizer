@@ -98,4 +98,19 @@ public class Trip {
         return calculateAllActivities() + calculateAllTransports() + calculateAllAccomodations();
     }
 
+    public String getDeparture() {
+        return departure;
+    }
+
+    public String getArrival() {
+        return arrival;
+    }
+
+    public LocalDate getBeginDate() {
+        return beginDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 }

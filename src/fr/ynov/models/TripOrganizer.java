@@ -19,6 +19,10 @@ public class TripOrganizer {
         trips.remove(trip);
     }
 
+    public List<Trip> getTrips() {
+        return trips;
+    }
+
     public void displayTrips() {
         for  (Trip trip : trips) {
             trip.displayTrip();
