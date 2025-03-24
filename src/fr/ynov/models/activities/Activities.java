@@ -2,6 +2,8 @@ package fr.ynov.models.activities;
 
 import fr.ynov.models.WeatherInfo;
 
+import java.time.LocalDate;
+
 public abstract class Activities {
 
     protected int id;
@@ -9,13 +11,15 @@ public abstract class Activities {
     protected static String city;
     protected String weather;
     protected int price;
+    protected LocalDate date;
 
-    public Activities(int id, String name, String city, int price) {
+    public Activities(int id, String name, String city, int price, LocalDate date) {
         this.id = id;
         this.name = name;
         Activities.city = city;
         this.weather = new WeatherInfo().toString();
         this.price = price;
+        this.date = date;
     }
 
         // GETTERS
