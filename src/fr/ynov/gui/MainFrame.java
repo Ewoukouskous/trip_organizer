@@ -15,13 +15,13 @@ public class MainFrame extends JFrame {
 
         setTitle("Trip Organizer");
         setSize(450, 800);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
         ViewTripPanel viewTripPanel = new ViewTripPanel(cardLayout, mainPanel, tripOrganizer);
-        TripsPanel tripsPanel = new TripsPanel(tripOrganizer, cardLayout, mainPanel, viewTripPanel);
         HomePanel homePanel = new HomePanel(cardLayout, mainPanel, tripOrganizer, viewTripPanel);
         AddTripPanel addTripPanel = new AddTripPanel(cardLayout, mainPanel);
 
