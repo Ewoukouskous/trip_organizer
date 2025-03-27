@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddTripPanel extends JPanel {
+
     public AddTripPanel(CardLayout cardLayout, JPanel mainPanel) {
         setLayout(new BorderLayout());
         setBackground(new Color(202, 240, 248));

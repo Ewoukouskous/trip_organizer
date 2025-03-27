@@ -23,8 +23,10 @@ public class MainFrame extends JFrame {
         ViewTripPanel viewTripPanel = new ViewTripPanel(cardLayout, mainPanel, tripOrganizer);
         TripsPanel tripsPanel = new TripsPanel(tripOrganizer, cardLayout, mainPanel, viewTripPanel);
         HomePanel homePanel = new HomePanel(cardLayout, mainPanel, tripOrganizer, viewTripPanel);
+        AddTripPanel addTripPanel = new AddTripPanel(cardLayout, mainPanel);
 
         mainPanel.add(homePanel, "home");
+        mainPanel.add(addTripPanel, "addTrip");
         mainPanel.add(viewTripPanel, "viewTrip");
 
         System.out.println("Panels ajoutés : ");

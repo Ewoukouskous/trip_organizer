@@ -31,6 +31,6 @@ public class HomePanel extends JPanel {
         add(footerPanel, BorderLayout.SOUTH);
 
         // Button Actions
-        addTripButton.addActionListener(e -> cardLayout.show(mainPanel, "AddTrip"));
+        addTripButton.addActionListener(e -> cardLayout.show(mainPanel, "addTrip"));
     }
 }
