@@ -16,9 +16,10 @@ public class TripsPanel extends JPanel {
     private ViewTripPanel viewTripPanel;
 
     public TripsPanel(TripOrganizer tripOrganizer, CardLayout cardLayout, JPanel mainPanel, ViewTripPanel viewTripPanel) {        this.tripOrganizer = tripOrganizer;
+        this.tripOrganizer = tripOrganizer;
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
-        this.viewTripPanel =  viewTripPanel;
+        this.viewTripPanel = viewTripPanel;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(new Color(202, 240, 248));
@@ -77,8 +78,15 @@ public class TripsPanel extends JPanel {
         tripPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                System.out.println("Trip sélectionné: " + trip.getDeparture() + " → " + trip.getArrival());
+
+                // Met à jour les détails du trip
                 viewTripPanel.setTripDetails(trip);
-                cardLayout.show(mainPanel, "ViewTrip");
+                System.out.println("Mise à jour du ViewTripPanel avec : " + trip.getDeparture() + " → " + trip.getArrival());
+
+                // Change de page vers "viewTrip"
+                cardLayout.show(mainPanel, "viewTrip");
+                System.out.println("Changement de page réussi !");
             }
         });
 

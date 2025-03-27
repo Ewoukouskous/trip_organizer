@@ -10,7 +10,7 @@ public class Entertainement extends Activities {
 
     @Override
     public String toString() {
-        return "Sport: " + id +  ", name: " + name +  ", city: " + city + ", weather: " +  weather;
+        return getClass().getSimpleName() + ", " + date.toString() + ", Name: " + name + ", City: " + city + ", Price: " + price ;
     }
 
 }

@@ -12,7 +12,6 @@ public class HomePanel extends JPanel {
 
         Header headerPanel = new Header(cardLayout, mainPanel);
 
-        // Footer Panel
         JPanel footerPanel = new JPanel(new BorderLayout());
         footerPanel.setBackground(new Color(202, 240, 248));
         footerPanel.setPreferredSize(new Dimension(440, 70));
@@ -24,7 +23,6 @@ public class HomePanel extends JPanel {
 
         footerPanel.add(addTripButton, BorderLayout.EAST);
 
-        // Correction : Ajout de viewTripPanel dans TripsPanel
         TripsPanel tripsPanel = new TripsPanel(tripOrganizer, cardLayout, mainPanel, viewTripPanel);
         tripsPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
         add(tripsPanel, BorderLayout.CENTER);

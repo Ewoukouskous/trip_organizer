@@ -1,8 +1,10 @@
 package fr.ynov.models.transport;
 
+import fr.ynov.models.Date;
+
 import java.time.LocalDate;
 
-public abstract class TransportType {
+public abstract class TransportType implements Date {
 
     protected int id;
     protected int price;
@@ -20,4 +22,8 @@ public abstract class TransportType {
         return price;
     }
 
+    @Override
+    public LocalDate getDate() {
+        return  date;
+    }
 }

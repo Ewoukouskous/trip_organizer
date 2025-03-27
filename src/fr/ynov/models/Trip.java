@@ -33,6 +33,7 @@ public class Trip {
         this.travelersList = new ArrayList<>();
         this.transportsList = new ArrayList<>();
         this.accomodationsList = new ArrayList<>();
+        this.activitiesList = new ArrayList<>();
     }
 
     public List<String> displayTravelersName() {
@@ -40,20 +41,6 @@ public class Trip {
             travelersNameList.add(traveler.getName());
         }
         return travelersNameList;
-    }
-
-    public void displayTrip() {
-        System.out.println("Trip ID: " + id);
-        System.out.println("Departure: " + departure + " Arrival: " + arrival);
-        System.out.println("Begin Date: " + beginDate + " End Date: " + endDate);
-        System.out.println("Travelers name: " + displayTravelersName());
-        System.out.println("Travelers:  " + travelersList);
-        System.out.println("Transports: " + transportsList);
-        System.out.println("Accommodations: " + accomodationsList);
-        System.out.println("Activities price: " + calculateAllActivities());
-        System.out.println("Accommodations price: " + calculateAllAccomodations());
-        System.out.println("Transport price: " + calculateAllTransports());
-        System.out.println("Total price: " + calculateTotalPrice());
     }
 
     public void addTravelers(Travelers travelers) {
@@ -98,6 +85,15 @@ public class Trip {
         return calculateAllActivities() + calculateAllTransports() + calculateAllAccomodations();
     }
 
+    public void populateActivitiesList() {
+        assert this.activitiesList != null;
+        this.activitiesList.clear();
+
+        for (Travelers traveler : travelersList) {
+            this.activitiesList.addAll(traveler.getActivities());
+        }
+    }
+
     public String getDeparture() {
         return departure;
     }
@@ -112,5 +108,27 @@ public class Trip {
 
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public List<TransportType>  getTransportsList() {
+        return transportsList;
+    }
+
+    public List<Accomodation>  getAccomodationsList() {
+        return accomodationsList;
+    }
+
+    public  List<Activities>  getActivitiesList() {
+        return activitiesList;
+    }
+
+    public List<Travelers> getTravelersList() {
+        return travelersList;
+    }
+
+    public void setActivitiesList(List<Travelers> travelersList) {
+        for (Travelers traveler : travelersList) {
+            this.activitiesList.addAll(traveler.getActivities());
+        }
     }
 }

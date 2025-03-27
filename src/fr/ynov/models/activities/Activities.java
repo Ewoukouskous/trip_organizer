@@ -1,10 +1,11 @@
 package fr.ynov.models.activities;
 
+import fr.ynov.models.Date;
 import fr.ynov.models.WeatherInfo;
 
 import java.time.LocalDate;
 
-public abstract class Activities {
+public abstract class Activities implements Date {
 
     protected int id;
     protected String name;
@@ -32,4 +33,8 @@ public abstract class Activities {
         return price;
     }
 
+    @Override
+    public LocalDate getDate() {
+        return date;
+    }
 }

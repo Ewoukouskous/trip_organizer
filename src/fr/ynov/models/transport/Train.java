@@ -10,7 +10,7 @@ public class Train extends TransportType {
 
     @Override
     public String toString() {
-        return "Train: " + id;
+        return getClass().getSimpleName() + ", " + date.toString() + ", price: " + price;
     }
 
 }

@@ -22,7 +22,7 @@ public class Header extends RoundedBottomPanel {
         titleLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                cardLayout.show(mainPanel, "Home");
+                cardLayout.show(mainPanel, "home");
             }
         });
 

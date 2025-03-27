@@ -10,7 +10,7 @@ public class Airbnb extends Accomodation {
 
     @Override
     public String toString() {
-        return "price: " + price + ", address: " + address + ", beginDate: " + beginDate + ", endDate: " + endDate;
+        return getClass().getSimpleName() + ", " + beginDate + " -> " + endDate + ", address: " + address + ", price: " + price;
     }
 
 }

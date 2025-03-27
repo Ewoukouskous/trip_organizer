@@ -1,8 +1,10 @@
 package fr.ynov.models.accomodation;
 
+import fr.ynov.models.Date;
+
 import java.time.LocalDate;
 
-public abstract class Accomodation {
+public abstract class Accomodation implements Date {
 
     protected int price;
     protected String address;
@@ -22,4 +24,8 @@ public abstract class Accomodation {
         return price;
     }
 
+    @Override
+    public LocalDate getDate() {
+        return beginDate;
+    }
 }

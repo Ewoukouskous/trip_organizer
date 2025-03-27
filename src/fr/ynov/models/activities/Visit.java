@@ -10,7 +10,7 @@ public class Visit extends Activities{
 
     @Override
     public String toString() {
-        return "Visit: " + id + ", name: " + name + ", city: " + city + ", weather: " +  weather;
+        return getClass().getSimpleName() + ", " + date.toString() + ", Name: " + name + ", City: " + city + ", Price: " + price ;
     }
 
 }

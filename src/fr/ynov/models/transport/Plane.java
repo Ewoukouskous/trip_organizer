@@ -10,7 +10,7 @@ public class Plane extends TransportType {
 
     @Override
     public String toString() {
-        return "Plane: " + id;
+        return getClass().getSimpleName() + ", " + date.toString() + ", price: " + price;
     }
 
 }

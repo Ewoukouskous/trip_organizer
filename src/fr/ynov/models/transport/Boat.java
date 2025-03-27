@@ -10,7 +10,7 @@ public class Boat extends TransportType {
 
     @Override
     public String toString() {
-        return "Boat: " + id;
+        return getClass().getSimpleName() + ", " + date.toString() + ", price: " + price;
     }
 
 }

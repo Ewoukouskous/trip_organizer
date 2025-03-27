@@ -1,7 +1,15 @@
 package fr.ynov.models;
 
+import fr.ynov.models.accomodation.Accomodation;
+import fr.ynov.models.activities.Activities;
+import fr.ynov.models.transport.TransportType;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TripOrganizer {
 
@@ -23,11 +31,18 @@ public class TripOrganizer {
         return trips;
     }
 
-    public void displayTrips() {
-        for  (Trip trip : trips) {
-            trip.displayTrip();
-            System.out.println("-=-=-=-=-=-=-=-");
-        }
+    public List<Object> getSortedTimelineElements(Trip trip) {
+        List<Object> elements = new ArrayList<>();
+
+        trip.setActivitiesList(trip.getTravelersList());
+
+        elements.addAll(trip.getTransportsList());
+        elements.addAll(trip.getAccomodationsList());
+        elements.addAll(trip.getActivitiesList());
+
+        elements.sort(Comparator.comparing(element -> ((Date) element).getDate()));
+
+        return elements;
     }
 
 }

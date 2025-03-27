@@ -10,30 +10,30 @@ public class MainFrame extends JFrame {
     private JPanel mainPanel;
     private TripOrganizer tripOrganizer;
 
-    public MainFrame(final TripOrganizer tripOrganizer) {
+    public MainFrame(TripOrganizer tripOrganizer) {
         this.tripOrganizer = tripOrganizer;
 
-        // Init the Frame
-        setTitle("TripOrganizer");
-        setSize(440, 800);
+        setTitle("Trip Organizer");
+        setSize(450, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
 
-        // Initialize CardLayout
         cardLayout = new CardLayout();
         mainPanel = new JPanel(cardLayout);
 
-        // Créer les pages
-        ViewTripPanel viewTripPanel = new ViewTripPanel(cardLayout, mainPanel);
+        ViewTripPanel viewTripPanel = new ViewTripPanel(cardLayout, mainPanel, tripOrganizer);
+        TripsPanel tripsPanel = new TripsPanel(tripOrganizer, cardLayout, mainPanel, viewTripPanel);
         HomePanel homePanel = new HomePanel(cardLayout, mainPanel, tripOrganizer, viewTripPanel);
-        AddTripPanel addTripPanel = new AddTripPanel(cardLayout, mainPanel);
 
-        // Ajouter les Panels au CardLayout
-        mainPanel.add(homePanel, "Home");
-        mainPanel.add(addTripPanel, "AddTrip");
-        mainPanel.add(viewTripPanel, "ViewTrip");
+        mainPanel.add(homePanel, "home");
+        mainPanel.add(viewTripPanel, "viewTrip");
+
+        System.out.println("Panels ajoutés : ");
+        for (Component comp : mainPanel.getComponents()) {
+            System.out.println(comp.getClass().getName());
+        }
 
         add(mainPanel);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 }

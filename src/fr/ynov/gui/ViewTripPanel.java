@@ -1,51 +1,98 @@
 package fr.ynov.gui;
 
 import fr.ynov.models.Trip;
+import fr.ynov.models.TripOrganizer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class ViewTripPanel extends JPanel {
-    private JLabel destinationLabel;
-    private JLabel dateLabel;
     private CardLayout cardLayout;
     private JPanel mainPanel;
+    private TripOrganizer tripOrganizer;
+    private JPanel timelinePanel;
 
-    public ViewTripPanel(CardLayout cardLayout, JPanel mainPanel) {
+    public ViewTripPanel(CardLayout cardLayout, JPanel mainPanel, TripOrganizer tripOrganizer) {
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
+        this.tripOrganizer = tripOrganizer;
 
         setLayout(new BorderLayout());
         setBackground(new Color(202, 240, 248));
 
         Header header = new Header(cardLayout, mainPanel);
-
-        // Labels
-        destinationLabel = new JLabel("Destination : ", SwingConstants.CENTER);
-        destinationLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
-
-        dateLabel = new JLabel("Dates : ", SwingConstants.CENTER);
-        dateLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-
-        // Contenu
-        JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
-        contentPanel.setBackground(new Color(202, 240, 248));
-        contentPanel.setBorder(BorderFactory.createEmptyBorder(100, 50, 100, 50));
-
-        destinationLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        dateLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        contentPanel.add(destinationLabel);
-        contentPanel.add(Box.createVerticalStrut(10));
-        contentPanel.add(dateLabel);
-
         add(header, BorderLayout.NORTH);
-        add(contentPanel, BorderLayout.CENTER);
+
+        timelinePanel = new JPanel();
+        timelinePanel.setLayout(new BoxLayout(timelinePanel, BoxLayout.Y_AXIS));
+        timelinePanel.setBackground(new Color(202, 240, 248));
+        timelinePanel.setBorder(BorderFactory.createEmptyBorder(20, 50, 50, 50));
+
+        JScrollPane scrollPane = new JScrollPane(timelinePanel);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(10);
+        scrollPane.getVerticalScrollBar().setUI(new ModernScrollBarUI());
+        scrollPane.setBorder(null);
+
+        add(scrollPane, BorderLayout.CENTER);
     }
 
     public void setTripDetails(Trip trip) {
-        destinationLabel.setText(trip.getDeparture() + " → " + trip.getArrival());
-        dateLabel.setText(trip.getBeginDate() + " - " + trip.getEndDate());
+        if (trip == null) {
+            System.err.println("Erreur : trip est null !");
+            return;
+        }
+
+        System.out.println("Mise à jour du ViewTripPanel avec : " + trip.getDeparture() + " → " + trip.getArrival());
+
+        timelinePanel.removeAll();
+
+        List<Object> timelineElements = tripOrganizer.getSortedTimelineElements(trip);
+
+        if (timelineElements.isEmpty()) {
+            System.err.println("La liste des éléments de la timeline est vide !");
+        }
+
+        for (Object element : timelineElements) {
+            String[] parts = element.toString().split(", ", 3);
+            String titleAndDate = parts[0] + ", " + parts[1];
+            String details = parts.length > 2 ? parts[2] : "";
+
+            RoundedPanel itemPanel = new RoundedPanel(25);
+            itemPanel.setLayout(new GridBagLayout());
+            itemPanel.setBackground(Color.WHITE);
+            itemPanel.setPreferredSize(new Dimension(300, 60));
+            itemPanel.setMaximumSize(new Dimension(300, 60));
+
+            JLabel titleLabel = new JLabel(titleAndDate, SwingConstants.CENTER);
+            titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+            JLabel detailsLabel = new JLabel(details, SwingConstants.CENTER);
+            detailsLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+
+            JPanel textPanel = new JPanel();
+            textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
+            textPanel.setOpaque(false);
+
+            titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            detailsLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+            textPanel.add(titleLabel);
+            textPanel.add(detailsLabel);
+
+            itemPanel.add(textPanel);
+            timelinePanel.add(itemPanel);
+
+            timelinePanel.add(Box.createVerticalStrut(20));
+        }
+
+        System.out.println("Éléments de la timeline : " + timelineElements);
+
+        SwingUtilities.invokeLater(() -> {
+            timelinePanel.revalidate();
+            timelinePanel.repaint();
+        });
     }
 }
