@@ -131,4 +131,9 @@ public class Trip {
             this.activitiesList.addAll(traveler.getActivities());
         }
     }
+
+    @Override
+    public String toString() {
+        return departure + " -> " + arrival;
+    }
 }

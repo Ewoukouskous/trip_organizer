@@ -5,7 +5,7 @@ import fr.ynov.models.WeatherInfo;
 
 import java.time.LocalDate;
 
-public abstract class Activities implements Date {
+public class Activities implements Date {
 
     protected int id;
     protected String name;

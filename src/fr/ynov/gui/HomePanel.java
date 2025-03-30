@@ -1,5 +1,6 @@
 package fr.ynov.gui;
 
+import fr.ynov.models.Trip;
 import fr.ynov.models.TripOrganizer;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ public class HomePanel extends JPanel {
     private Header headerPanel;
     private JPanel footerPanel;
     private TripsPanel tripsPanel;
+    private JComboBox<Trip> tripComboBox;
 
     public HomePanel(CardLayout cardLayout, JPanel mainPanel, TripOrganizer tripOrganizer, ViewTripPanel viewTripPanel) {
         this.cardLayout = cardLayout;
@@ -26,9 +28,10 @@ public class HomePanel extends JPanel {
         setBackground(new Color(202, 240, 248));
         setName("homePanel");
 
-        // Initialisation des composants
+        // Initialisation du Header
         headerPanel = new Header(cardLayout, mainPanel);
 
+        // Footer avec bouton d'ajout
         footerPanel = new JPanel(new BorderLayout());
         footerPanel.setBackground(new Color(202, 240, 248));
         footerPanel.setPreferredSize(new Dimension(440, 70));
@@ -37,10 +40,19 @@ public class HomePanel extends JPanel {
         addTripButton.setBackground(new Color(0, 51, 102));
         addTripButton.setFont(new Font("Segoe UI", Font.BOLD, 35));
         addTripButton.setForeground(new Color(202, 240, 248));
-
         footerPanel.add(addTripButton, BorderLayout.EAST);
 
-        // Initialisation du TripsPanel
+        // ComboBox pour sélectionner un voyage
+        tripComboBox = new JComboBox<>();
+        updateTripComboBox();
+
+        JPanel comboBoxPanel = new JPanel();
+        comboBoxPanel.add(new JLabel("Voyages:"));
+        comboBoxPanel.add(tripComboBox);
+
+        add(comboBoxPanel, BorderLayout.NORTH);
+
+        // Initialisation de TripsPanel
         tripsPanel = new TripsPanel(tripOrganizer, cardLayout, mainPanel, viewTripPanel);
         tripsPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
 
@@ -49,12 +61,12 @@ public class HomePanel extends JPanel {
         add(tripsPanel, BorderLayout.CENTER);
         add(footerPanel, BorderLayout.SOUTH);
 
-        // Button Actions
+        // Action du bouton pour ouvrir CreateTripFrame
         addTripButton.addActionListener(e -> cardLayout.show(mainPanel, "addTrip"));
     }
 
     public void refreshTripsPanel() {
-        // Supprime uniquement l'ancien TripsPanel
+        // Supprime l'ancien TripsPanel
         remove(tripsPanel);
 
         // Crée un nouveau TripsPanel
@@ -64,8 +76,18 @@ public class HomePanel extends JPanel {
         // Ajoute le nouveau TripsPanel
         add(tripsPanel, BorderLayout.CENTER);
 
+        // Met à jour la ComboBox
+        updateTripComboBox();
+
         // Rafraîchissement
         revalidate();
         repaint();
+    }
+
+    public void updateTripComboBox() {
+        tripComboBox.removeAllItems();
+        for (Trip trip : this.tripOrganizer.getTrips()) {
+            tripComboBox.addItem(trip);
+        }
     }
 }

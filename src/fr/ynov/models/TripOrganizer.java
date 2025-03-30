@@ -31,6 +31,10 @@ public class TripOrganizer {
         return trips;
     }
 
+    public List<String> getTripsString() {
+        return trips.stream().map(Trip::toString).collect(Collectors.toList());
+    }
+
     public List<Object> getSortedTimelineElements(Trip trip) {
         List<Object> elements = new ArrayList<>();
 

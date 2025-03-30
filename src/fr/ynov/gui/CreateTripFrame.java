@@ -16,7 +16,7 @@ public class CreateTripFrame extends JFrame {
     private JTextField departureField, arrivalField, beginDateField, endDateField;
     private JButton createButton, cancelButton;
 
-    public CreateTripFrame(TripOrganizer tripOrganizer, JPanel mainPanel) {
+    public CreateTripFrame(TripOrganizer tripOrganizer, JPanel mainPanel, HomePanel homePanel, AddTripPanel addTripPanel) {
         setTitle("Créer un Nouveau Voyage");
         setSize(400, 300);
         setResizable(false);
@@ -49,11 +49,10 @@ public class CreateTripFrame extends JFrame {
 
         add(panel, BorderLayout.CENTER);
 
-        createButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createTrip(tripOrganizer, mainPanel);
-            }
+        createButton.addActionListener(e -> {
+            createTrip(tripOrganizer, mainPanel, homePanel);
+            homePanel.refreshTripsPanel();  // Mise à jour du HomePanel
+            addTripPanel.updateTripList();  // Mise à jour du JComboBox dans AddTripPanel
         });
 
         cancelButton.addActionListener(e -> dispose()); // Ferme la fenêtre
@@ -61,7 +60,7 @@ public class CreateTripFrame extends JFrame {
         setVisible(true);
     }
 
-    private void createTrip(TripOrganizer tripOrganizer, JPanel mainPanel) {
+    private void createTrip(TripOrganizer tripOrganizer, JPanel mainPanel, HomePanel homePanel) {
         try {
             String departure = departureField.getText();
             String arrival = arrivalField.getText();
@@ -81,6 +80,7 @@ public class CreateTripFrame extends JFrame {
             // Création du Trip
             Trip newTrip = new Trip(1, departure, arrival, beginDate, endDate);
             tripOrganizer.addTrip(newTrip);
+            homePanel.updateTripComboBox();
 
             // Confirmation
             System.out.println(tripOrganizer.getTrips());
@@ -95,7 +95,7 @@ public class CreateTripFrame extends JFrame {
                     .orElse(null);
 
             if (homeComp instanceof HomePanel) {
-                HomePanel homePanel = (HomePanel) homeComp;
+                homePanel = (HomePanel) homeComp;
 
                 // Rafraîchir TripsPanel (qui affiche les voyages)
                 homePanel.refreshTripsPanel();
