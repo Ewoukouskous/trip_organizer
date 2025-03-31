@@ -52,7 +52,15 @@ public class ViewTripPanel extends JPanel {
         List<Object> timelineElements = tripOrganizer.getSortedTimelineElements(trip);
 
         if (timelineElements.isEmpty()) {
-            System.err.println("La liste des éléments de la timeline est vide !");
+            JPanel timelineEmptyPanel = new JPanel(new GridBagLayout());
+            timelineEmptyPanel.setBackground(new Color(202, 240, 248));
+
+            JLabel timelineEmpty = new JLabel("Your trip timeline is empty");
+            timelineEmpty.setFont(new Font("Segoe UI", Font.BOLD, 14));
+            timelineEmpty.setForeground(new Color(3, 4, 94));
+
+            timelineEmptyPanel.add(timelineEmpty);
+            timelinePanel.add(timelineEmptyPanel);
         }
 
         for (Object element : timelineElements) {
