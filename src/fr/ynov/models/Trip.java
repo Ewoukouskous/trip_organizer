@@ -36,62 +36,12 @@ public class Trip {
         this.activitiesList = new ArrayList<>();
     }
 
-    public List<String> displayTravelersName() {
-        for  (Travelers traveler : travelersList) {
-            travelersNameList.add(traveler.getName());
-        }
-        return travelersNameList;
-    }
-
-    public void addTravelers(Travelers travelers) {
-        travelersList.add(travelers);
-    }
-
     public void addTransportType(TransportType transportType) {
         transportsList.add(transportType);
     }
 
     public void addAccomodation(Accomodation accomodation) {
         accomodationsList.add(accomodation);
-    }
-
-    public int calculateAllActivities() {
-        int totalActivities = 0;
-        for (Travelers traveler : travelersList) {
-            for (Activities activities : traveler.getActivities()) {
-                totalActivities += activities.getPrice();
-            }
-        }
-        return totalActivities;
-    }
-
-    public int calculateAllAccomodations() {
-        int totalAccomodations = 0;
-        for (Accomodation accomodation : accomodationsList) {
-            totalAccomodations += (int) ((accomodation.getPrice() * travelersList.size()) * ChronoUnit.DAYS.between(beginDate, endDate));
-        }
-        return totalAccomodations;
-    }
-
-    public int calculateAllTransports() {
-        int totalTransport = 0;
-        for (TransportType transport : transportsList) {
-            totalTransport += transport.getPrice();
-        }
-        return totalTransport *  travelersList.size();
-    }
-
-    public int calculateTotalPrice() {
-        return calculateAllActivities() + calculateAllTransports() + calculateAllAccomodations();
-    }
-
-    public void populateActivitiesList() {
-        assert this.activitiesList != null;
-        this.activitiesList.clear();
-
-        for (Travelers traveler : travelersList) {
-            this.activitiesList.addAll(traveler.getActivities());
-        }
     }
 
     public String getDeparture() {

@@ -103,7 +103,7 @@ public class AccomodationEditorFrame extends JFrame {
             };
 
             if (accomodation != null) {
-                trip.getAccomodationsList().add(accomodation);
+                trip.addAccomodation(accomodation);
                 JOptionPane.showMessageDialog(this, "Hébergement ajouté avec succès !");
                 dispose();
             }

@@ -19,18 +19,6 @@ public class Travelers {
         this.activities = new ArrayList<>();
     }
 
-    public void joinActivity(Activities activities) {
-        List<Activities>  activitiesList = getActivities();
-        activitiesList.add(activities);
-        setActivities(activitiesList);
-    }
-
-    public void displayActivities() {
-        for (Activities activities : getActivities()) {
-            System.out.println(activities.toString());
-        }
-    }
-
         // GETTERS
 
     public List<Activities> getActivities() {
@@ -40,11 +28,4 @@ public class Travelers {
     public String getName(){
         return name;
     }
-
-        // SETTERS
-
-    public void setActivities(List<Activities> activities) {
-        this.activities = activities;
-    }
-
 }

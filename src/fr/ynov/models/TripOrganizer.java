@@ -1,15 +1,8 @@
 package fr.ynov.models;
 
-import fr.ynov.models.accomodation.Accomodation;
-import fr.ynov.models.activities.Activities;
-import fr.ynov.models.transport.TransportType;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TripOrganizer {
 
@@ -23,16 +16,8 @@ public class TripOrganizer {
         trips.add(trip);
     }
 
-    public void removeTrip(Trip trip) {
-        trips.remove(trip);
-    }
-
     public List<Trip> getTrips() {
         return trips;
-    }
-
-    public List<String> getTripsString() {
-        return trips.stream().map(Trip::toString).collect(Collectors.toList());
     }
 
     public List<Object> getSortedTimelineElements(Trip trip) {
