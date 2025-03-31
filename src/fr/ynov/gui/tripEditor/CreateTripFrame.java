@@ -1,61 +1,86 @@
-package fr.ynov.gui;
+package fr.ynov.gui.tripEditor;
 
+import fr.ynov.gui.AddTripPanel;
+import fr.ynov.gui.Button;
+import fr.ynov.gui.HomePanel;
 import fr.ynov.models.Trip;
 import fr.ynov.models.TripOrganizer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 public class CreateTripFrame extends JFrame {
-
     private JTextField departureField, arrivalField, beginDateField, endDateField;
     private JButton createButton, cancelButton;
 
     public CreateTripFrame(TripOrganizer tripOrganizer, JPanel mainPanel, HomePanel homePanel, AddTripPanel addTripPanel) {
         setTitle("Créer un Nouveau Voyage");
         setSize(400, 300);
-        setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        getContentPane().setBackground(new Color(202, 240, 248));
+        setLayout(new GridBagLayout());
 
-        JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10));
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        panel.add(new JLabel("Départ:"));
+        JLabel titleLabel = new JLabel("Créer un Nouveau Voyage", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
+        add(titleLabel, gbc);
+
+        gbc.gridwidth = 1;
+        gbc.gridy++;
+        add(new JLabel("Départ :"), gbc);
         departureField = new JTextField();
-        panel.add(departureField);
+        gbc.gridx = 1;
+        add(departureField, gbc);
 
-        panel.add(new JLabel("Arrivée:"));
+        gbc.gridx = 0; gbc.gridy++;
+        add(new JLabel("Arrivée :"), gbc);
         arrivalField = new JTextField();
-        panel.add(arrivalField);
+        gbc.gridx = 1;
+        add(arrivalField, gbc);
 
-        panel.add(new JLabel("Date début (YYYY-MM-DD):"));
+        gbc.gridx = 0; gbc.gridy++;
+        add(new JLabel("Date début (YYYY-MM-DD) :"), gbc);
         beginDateField = new JTextField();
-        panel.add(beginDateField);
+        gbc.gridx = 1;
+        add(beginDateField, gbc);
 
-        panel.add(new JLabel("Date fin (YYYY-MM-DD):"));
+        gbc.gridx = 0; gbc.gridy++;
+        add(new JLabel("Date fin (YYYY-MM-DD) :"), gbc);
         endDateField = new JTextField();
-        panel.add(endDateField);
+        gbc.gridx = 1;
+        add(endDateField, gbc);
 
-        createButton = new JButton("Créer");
-        cancelButton = new JButton("Annuler");
-
-        panel.add(createButton);
-        panel.add(cancelButton);
-
-        add(panel, BorderLayout.CENTER);
-
+        createButton = new Button("Créer");
+        createButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        createButton.setBackground(new Color(0, 123, 255));
+        createButton.setForeground(Color.WHITE);
+        createButton.setFocusPainted(false);
         createButton.addActionListener(e -> {
             createTrip(tripOrganizer, mainPanel, homePanel);
-            homePanel.refreshTripsPanel();  // Mise à jour du HomePanel
-            addTripPanel.updateTripList();  // Mise à jour du JComboBox dans AddTripPanel
+            homePanel.refreshTripsPanel();
+            addTripPanel.updateTripList();
         });
 
-        cancelButton.addActionListener(e -> dispose()); // Ferme la fenêtre
+        cancelButton = new Button("Annuler");
+        cancelButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        cancelButton.setBackground(new Color(220, 53, 69));
+        cancelButton.setForeground(Color.WHITE);
+        cancelButton.setFocusPainted(false);
+        cancelButton.addActionListener(e -> dispose());
+
+        gbc.gridx = 0; gbc.gridy++;
+        gbc.gridwidth = 1;
+        add(createButton, gbc);
+        gbc.gridx = 1;
+        add(cancelButton, gbc);
 
         setVisible(true);
     }
@@ -67,7 +92,6 @@ public class CreateTripFrame extends JFrame {
             LocalDate beginDate = LocalDate.parse(beginDateField.getText());
             LocalDate endDate = LocalDate.parse(endDateField.getText());
 
-            // Vérification des données
             if (departure.isEmpty() || arrival.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !", "Erreur", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -77,18 +101,13 @@ public class CreateTripFrame extends JFrame {
                 return;
             }
 
-            // Création du Trip
             Trip newTrip = new Trip(1, departure, arrival, beginDate, endDate);
             tripOrganizer.addTrip(newTrip);
             homePanel.updateTripComboBox();
 
-            // Confirmation
-            System.out.println(tripOrganizer.getTrips());
             JOptionPane.showMessageDialog(this, "Voyage créé avec succès !", "Succès", JOptionPane.INFORMATION_MESSAGE);
-            System.out.println(newTrip.getDeparture() + ",  " + newTrip.getArrival());
             dispose();
 
-            // Refaire la page home
             Component homeComp = Arrays.stream(mainPanel.getComponents())
                     .filter(c -> "homePanel".equals(c.getName()))
                     .findFirst()
@@ -96,10 +115,7 @@ public class CreateTripFrame extends JFrame {
 
             if (homeComp instanceof HomePanel) {
                 homePanel = (HomePanel) homeComp;
-
-                // Rafraîchir TripsPanel (qui affiche les voyages)
                 homePanel.refreshTripsPanel();
-
                 homePanel.revalidate();
                 homePanel.repaint();
             }

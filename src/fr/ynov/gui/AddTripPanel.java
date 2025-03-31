@@ -1,5 +1,9 @@
 package fr.ynov.gui;
 
+import fr.ynov.gui.tripEditor.AccomodationEditorFrame;
+import fr.ynov.gui.tripEditor.ActivityEditorFrame;
+import fr.ynov.gui.tripEditor.CreateTripFrame;
+import fr.ynov.gui.tripEditor.TransportEditorFrame;
 import fr.ynov.models.Trip;
 import fr.ynov.models.TripOrganizer;
 
