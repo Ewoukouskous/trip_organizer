@@ -6,30 +6,24 @@ import fr.ynov.models.transport.TransportType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.time.temporal.ChronoUnit;
 
 public class Trip {
 
-    private int id;
-    private String departure;
-    private String arrival;
-    private LocalDate beginDate;
-    private LocalDate endDate;
-    private List<Travelers> travelersList;
-    private List<String> travelersNameList;
-    private List<TransportType> transportsList;
-    private List<Accomodation>  accomodationsList;
-    private List<Activities>  activitiesList;
+    private final String departure;
+    private final String arrival;
+    private final LocalDate beginDate;
+    private final LocalDate endDate;
+    private final List<Travelers> travelersList;
+    private final List<TransportType> transportsList;
+    private final List<Accomodation>  accomodationsList;
+    private final List<Activities>  activitiesList;
 
-    public Trip(int id, String departure, String arrival, LocalDate beginDate, LocalDate endDate) {
-        this.id = id;
+    public Trip(String departure, String arrival, LocalDate beginDate, LocalDate endDate) {
         this.departure = departure;
         this.arrival = arrival;
         this.beginDate = beginDate;
         this.endDate = endDate;
-        this.travelersNameList = new ArrayList<>();
         this.travelersList = new ArrayList<>();
         this.transportsList = new ArrayList<>();
         this.accomodationsList = new ArrayList<>();

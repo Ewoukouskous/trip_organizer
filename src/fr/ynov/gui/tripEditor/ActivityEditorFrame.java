@@ -10,13 +10,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class ActivityEditorFrame extends JFrame {
-    private Trip trip;
-    private JComboBox<String> activityTypeComboBox;
-    private JTextField nameField;
-    private JTextField cityField;
-    private JTextField priceField;
-    private JTextField dateField;
-    private JButton addButton;
+    private final Trip trip;
+    private final JComboBox<String> activityTypeComboBox;
+    private final JTextField nameField;
+    private final JTextField cityField;
+    private final JTextField priceField;
+    private final JTextField dateField;
 
     public ActivityEditorFrame(Trip trip) {
         this.trip = trip;
@@ -68,7 +67,7 @@ public class ActivityEditorFrame extends JFrame {
         gbc.gridx = 1;
         add(dateField, gbc);
 
-        addButton = new Button("Ajouter Activité");
+        JButton addButton = new Button("Ajouter Activité");
         addButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         addButton.setBackground(new Color(0, 123, 255));
         addButton.setForeground(Color.WHITE);
@@ -90,6 +89,7 @@ public class ActivityEditorFrame extends JFrame {
             int price = Integer.parseInt(priceField.getText());
             LocalDate date = LocalDate.parse(dateField.getText());
 
+            assert selectedType != null;
             Activities activity = switch (selectedType) {
                 case "Sport" -> new Sport(1, name, city, price, date);
                 case "Visite" -> new Visit(1, name, city, price, date);

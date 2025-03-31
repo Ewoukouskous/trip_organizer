@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TripOrganizer {
 
-    private List<Trip> trips;
+    private final List<Trip> trips;
 
     public TripOrganizer() {
         trips = new ArrayList<>();

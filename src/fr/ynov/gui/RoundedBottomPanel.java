@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 class RoundedBottomPanel extends JPanel {
-    private int cornerRadius;
+    private final int cornerRadius;
 
     public RoundedBottomPanel(int radius) {
         this.cornerRadius = radius;

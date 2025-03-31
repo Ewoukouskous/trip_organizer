@@ -8,15 +8,13 @@ import java.awt.*;
 
 public class HomePanel extends JPanel {
 
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
-    private TripOrganizer tripOrganizer;
-    private ViewTripPanel viewTripPanel;
+    private final CardLayout cardLayout;
+    private final JPanel mainPanel;
+    private final TripOrganizer tripOrganizer;
+    private final ViewTripPanel viewTripPanel;
 
-    private Header headerPanel;
-    private JPanel footerPanel;
     private TripsPanel tripsPanel;
-    private JComboBox<Trip> tripComboBox;
+    private final JComboBox<Trip> tripComboBox;
 
     public HomePanel(CardLayout cardLayout, JPanel mainPanel, TripOrganizer tripOrganizer, ViewTripPanel viewTripPanel) {
         this.cardLayout = cardLayout;
@@ -29,10 +27,10 @@ public class HomePanel extends JPanel {
         setName("homePanel");
 
         // Initialisation du Header
-        headerPanel = new Header(cardLayout, mainPanel);
+        Header headerPanel = new Header(cardLayout, mainPanel);
 
         // Footer avec bouton d'ajout
-        footerPanel = new JPanel(new BorderLayout());
+        JPanel footerPanel = new JPanel(new BorderLayout());
         footerPanel.setBackground(new Color(202, 240, 248));
         footerPanel.setPreferredSize(new Dimension(440, 70));
 

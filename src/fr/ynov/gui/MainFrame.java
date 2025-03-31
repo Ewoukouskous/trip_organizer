@@ -6,20 +6,16 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
-    private TripOrganizer tripOrganizer;
 
     public MainFrame(TripOrganizer tripOrganizer) {
-        this.tripOrganizer = tripOrganizer;
 
         setTitle("Trip Organizer");
         setSize(450, 800);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        cardLayout = new CardLayout();
-        mainPanel = new JPanel(cardLayout);
+        CardLayout cardLayout = new CardLayout();
+        JPanel mainPanel = new JPanel(cardLayout);
 
         ViewTripPanel viewTripPanel = new ViewTripPanel(cardLayout, mainPanel, tripOrganizer);
         HomePanel homePanel = new HomePanel(cardLayout, mainPanel, tripOrganizer, viewTripPanel);

@@ -7,15 +7,11 @@ import java.util.List;
 
 public class Travelers {
 
-    private final int id;
-    private String name;
-    private int age;
-    private List<Activities> activities;
+    private final String name;
+    private final List<Activities> activities;
 
-    public Travelers(int id, String name, int age) {
-        this.id = id;
+    public Travelers(String name) {
         this.name = name;
-        this.age = age;
         this.activities = new ArrayList<>();
     }
 

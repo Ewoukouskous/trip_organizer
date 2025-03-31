@@ -10,11 +10,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class TransportEditorFrame extends JFrame {
-    private Trip trip;
-    private JComboBox<String> transportTypeComboBox;
-    private JTextField priceField;
-    private JTextField dateField;
-    private JButton addButton;
+    private final Trip trip;
+    private final JComboBox<String> transportTypeComboBox;
+    private final JTextField priceField;
+    private final JTextField dateField;
 
     public TransportEditorFrame(Trip trip) {
         this.trip = trip;
@@ -54,7 +53,7 @@ public class TransportEditorFrame extends JFrame {
         gbc.gridx = 1;
         add(dateField, gbc);
 
-        addButton = new Button("Ajouter Transport");
+        JButton addButton = new Button("Ajouter Transport");
         addButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         addButton.setBackground(new Color(0, 123, 255));
         addButton.setForeground(Color.WHITE);
@@ -74,6 +73,7 @@ public class TransportEditorFrame extends JFrame {
             int price = Integer.parseInt(priceField.getText());
             LocalDate date = LocalDate.parse(dateField.getText());
 
+            assert selectedType != null;
             TransportType transport = switch (selectedType) {
                 case "Voiture" -> new Car(1, price, date);
                 case "Train" -> new Train(1, price, date);

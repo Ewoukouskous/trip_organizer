@@ -10,13 +10,12 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class TripsPanel extends JPanel {
-    private TripOrganizer tripOrganizer;
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
-    private ViewTripPanel viewTripPanel;
+    private final TripOrganizer tripOrganizer;
+    private final CardLayout cardLayout;
+    private final JPanel mainPanel;
+    private final ViewTripPanel viewTripPanel;
 
     public TripsPanel(TripOrganizer tripOrganizer, CardLayout cardLayout, JPanel mainPanel, ViewTripPanel viewTripPanel) {        this.tripOrganizer = tripOrganizer;
-        this.tripOrganizer = tripOrganizer;
         this.cardLayout = cardLayout;
         this.mainPanel = mainPanel;
         this.viewTripPanel = viewTripPanel;

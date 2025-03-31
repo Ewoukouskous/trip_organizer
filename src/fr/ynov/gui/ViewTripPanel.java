@@ -8,14 +8,10 @@ import java.awt.*;
 import java.util.List;
 
 public class ViewTripPanel extends JPanel {
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
-    private TripOrganizer tripOrganizer;
-    private JPanel timelinePanel;
+    private final TripOrganizer tripOrganizer;
+    private final JPanel timelinePanel;
 
     public ViewTripPanel(CardLayout cardLayout, JPanel mainPanel, TripOrganizer tripOrganizer) {
-        this.cardLayout = cardLayout;
-        this.mainPanel = mainPanel;
         this.tripOrganizer = tripOrganizer;
 
         setLayout(new BorderLayout());

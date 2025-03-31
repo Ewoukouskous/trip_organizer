@@ -10,13 +10,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class AccomodationEditorFrame extends JFrame {
-    private Trip trip;
-    private JComboBox<String> accomodationTypeComboBox;
-    private JTextField priceField;
-    private JTextField addressField;
-    private JTextField beginDateField;
-    private JTextField endDateField;
-    private JButton addButton;
+    private final Trip trip;
+    private final JComboBox<String> accomodationTypeComboBox;
+    private final JTextField priceField;
+    private final JTextField addressField;
+    private final JTextField beginDateField;
+    private final JTextField endDateField;
 
     public AccomodationEditorFrame(Trip trip) {
         this.trip = trip;
@@ -68,7 +67,7 @@ public class AccomodationEditorFrame extends JFrame {
         gbc.gridx = 1;
         add(endDateField, gbc);
 
-        addButton = new Button("Ajouter Hébergement");
+        JButton addButton = new Button("Ajouter Hébergement");
         addButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         addButton.setBackground(new Color(0, 123, 255));
         addButton.setForeground(Color.WHITE);

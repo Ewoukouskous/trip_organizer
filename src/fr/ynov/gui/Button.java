@@ -5,9 +5,8 @@ import javax.swing.JButton;
 
 public class Button extends JButton {
 
-    private static final long serialVersionUID = 1671314658637614873L;
-    private Color normalColor = new Color(0, 51, 102); // Bleu foncé
-    private Color hoverColor = new Color(30, 144, 255); // Bleu vif au survol
+    private final Color normalColor = new Color(0, 51, 102); // Bleu foncé
+    private final Color hoverColor = new Color(30, 144, 255); // Bleu vif au survol
     private boolean isHovered = false;
 
     public Button(String text) {

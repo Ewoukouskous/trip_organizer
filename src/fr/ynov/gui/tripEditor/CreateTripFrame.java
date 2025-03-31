@@ -13,8 +13,10 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 public class CreateTripFrame extends JFrame {
-    private JTextField departureField, arrivalField, beginDateField, endDateField;
-    private JButton createButton, cancelButton;
+    private final JTextField departureField;
+    private final JTextField arrivalField;
+    private final JTextField beginDateField;
+    private final JTextField endDateField;
 
     public CreateTripFrame(TripOrganizer tripOrganizer, JPanel mainPanel, HomePanel homePanel, AddTripPanel addTripPanel) {
         setTitle("Créer un Nouveau Voyage");
@@ -58,7 +60,7 @@ public class CreateTripFrame extends JFrame {
         gbc.gridx = 1;
         add(endDateField, gbc);
 
-        createButton = new Button("Créer");
+        JButton createButton = new Button("Créer");
         createButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         createButton.setBackground(new Color(0, 123, 255));
         createButton.setForeground(Color.WHITE);
@@ -69,7 +71,7 @@ public class CreateTripFrame extends JFrame {
             addTripPanel.updateTripList();
         });
 
-        cancelButton = new Button("Annuler");
+        JButton cancelButton = new Button("Annuler");
         cancelButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
         cancelButton.setBackground(new Color(220, 53, 69));
         cancelButton.setForeground(Color.WHITE);
@@ -101,7 +103,7 @@ public class CreateTripFrame extends JFrame {
                 return;
             }
 
-            Trip newTrip = new Trip(1, departure, arrival, beginDate, endDate);
+            Trip newTrip = new Trip(departure, arrival, beginDate, endDate);
             tripOrganizer.addTrip(newTrip);
             homePanel.updateTripComboBox();
 

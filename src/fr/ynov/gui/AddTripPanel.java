@@ -12,14 +12,10 @@ import java.awt.*;
 import java.util.List;
 
 public class AddTripPanel extends JPanel {
-    private CardLayout cardLayout;
-    private JPanel mainPanel;
-    private TripOrganizer tripOrganizer;
-    private JComboBox<Trip> tripComboBox;
+    private final TripOrganizer tripOrganizer;
+    private final JComboBox<Trip> tripComboBox;
 
     public AddTripPanel(CardLayout cardLayout, JPanel mainPanel, TripOrganizer tripOrganizer, HomePanel homePanel) {
-        this.cardLayout = cardLayout;
-        this.mainPanel = mainPanel;
         this.tripOrganizer = tripOrganizer;
 
         setLayout(new BorderLayout());
