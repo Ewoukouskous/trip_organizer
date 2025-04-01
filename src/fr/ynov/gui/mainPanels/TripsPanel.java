@@ -42,56 +42,74 @@ public class TripsPanel extends JPanel {
     }
 
         // This function will create a card for the trip that contains an icon, the departure and the arrival and the trip dates
-    private JPanel createTripCard(Trip trip) {
-        RoundedPanel tripPanel = new RoundedPanel(20);
-        tripPanel.setPreferredSize(new Dimension(350, 100));
-        tripPanel.setBackground(Color.WHITE);
-        tripPanel.setMaximumSize(new Dimension(350, 100));
+        private JPanel createTripCard(Trip trip) {
+            RoundedPanel tripPanel = new RoundedPanel(20);
+            tripPanel.setPreferredSize(new Dimension(350, 100));
+            tripPanel.setBackground(Color.WHITE);
+            tripPanel.setMaximumSize(new Dimension(350, 100));
 
-        JLabel imageLabel = new JLabel();
-        imageLabel.setPreferredSize(new Dimension(80, 80));
-        imageLabel.setOpaque(true);
-        imageLabel.setBackground(Color.LIGHT_GRAY);
-        imageLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            // Icon panel
+            JPanel imagePanel = new JPanel(new GridBagLayout());
+            imagePanel.setPreferredSize(new Dimension(100, 100));
+            imagePanel.setBackground(Color.WHITE);
 
-        JPanel textPanel = new JPanel(new GridLayout(2, 1));
-        textPanel.setBackground(Color.WHITE);
-        textPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
-
-        JLabel destinationLabel = new JLabel(trip.getDeparture() + ", " + trip.getArrival());
-        destinationLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        destinationLabel.setForeground(Color.BLACK);
-
-        JLabel dateLabel = new JLabel(trip.getBeginDate() + " - " + trip.getEndDate());
-        dateLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        dateLabel.setForeground(Color.DARK_GRAY);
-
-        textPanel.add(destinationLabel);
-        textPanel.add(dateLabel);
-
-        JPanel contentPanel = new JPanel();
-        contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.X_AXIS));
-        contentPanel.setBackground(Color.WHITE);
-        contentPanel.add(imageLabel);
-        contentPanel.add(Box.createRigidArea(new Dimension(50, 0)));
-        contentPanel.add(textPanel);
-
-        tripPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        tripPanel.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("Trip sélectionné: " + trip.getDeparture() + " → " + trip.getArrival());
-
-                viewTripPanel.setTripDetails(trip);
-                System.out.println("Mise à jour du ViewTripPanel avec : " + trip.getDeparture() + " → " + trip.getArrival());
-
-                cardLayout.show(mainPanel, "viewTrip");
-                System.out.println("Changement de page réussi !");
+            JLabel imageLabel = new JLabel();
+            try {
+                ImageIcon originalIcon = new ImageIcon("src/fr/ynov/gui/assets/voyage.png");
+                Image image = originalIcon.getImage().getScaledInstance(65, 65, Image.SCALE_SMOOTH);
+                imageLabel.setIcon(new ImageIcon(image));
+            } catch (Exception e) {
+                System.out.println("Erreur de chargement de l'image : " + e.getMessage());
             }
-        });
+            imagePanel.add(imageLabel);
 
-        tripPanel.add(contentPanel, BorderLayout.CENTER);
+            JPanel textPanel = new JPanel(new GridBagLayout());
+            textPanel.setBackground(Color.WHITE);
 
-        return tripPanel;
-    }
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weighty = 1;
+            gbc.anchor = GridBagConstraints.CENTER;
+
+            JLabel destinationLabel = new JLabel(trip.getDeparture() + ", " + trip.getArrival());
+            destinationLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
+            destinationLabel.setForeground(Color.BLACK);
+
+            JLabel dateLabel = new JLabel(trip.getBeginDate() + " - " + trip.getEndDate());
+            dateLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+            dateLabel.setForeground(Color.DARK_GRAY);
+
+            JPanel textContainer = new JPanel(new GridLayout(2, 1));
+            textContainer.setBackground(Color.WHITE);
+            textContainer.add(destinationLabel);
+            textContainer.add(dateLabel);
+
+            textPanel.add(textContainer, gbc);
+
+            JPanel contentPanel = new JPanel(new BorderLayout());
+            contentPanel.setBackground(Color.WHITE);
+            contentPanel.add(imagePanel, BorderLayout.WEST);
+            contentPanel.add(textPanel, BorderLayout.CENTER);
+
+            tripPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            tripPanel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    System.out.println("Trip sélectionné: " + trip.getDeparture() + " → " + trip.getArrival());
+
+                    viewTripPanel.setTripDetails(trip);
+                    System.out.println("Mise à jour du ViewTripPanel avec : " + trip.getDeparture() + " → " + trip.getArrival());
+
+                    cardLayout.show(mainPanel, "viewTrip");
+                    System.out.println("Changement de page réussi !");
+                }
+            });
+
+            tripPanel.setLayout(new BorderLayout());
+            tripPanel.add(contentPanel, BorderLayout.CENTER);
+
+            return tripPanel;
+        }
+
 }
