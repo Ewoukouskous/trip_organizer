@@ -14,7 +14,6 @@ public class Trip {
     private final String arrival;
     private final LocalDate beginDate;
     private final LocalDate endDate;
-    private final List<Travelers> travelersList;
     private final List<TransportType> transportsList;
     private final List<Accomodation>  accomodationsList;
     private final List<Activities>  activitiesList;
@@ -24,7 +23,6 @@ public class Trip {
         this.arrival = arrival;
         this.beginDate = beginDate;
         this.endDate = endDate;
-        this.travelersList = new ArrayList<>();
         this.transportsList = new ArrayList<>();
         this.accomodationsList = new ArrayList<>();
         this.activitiesList = new ArrayList<>();
@@ -37,6 +35,8 @@ public class Trip {
     public void addAccomodation(Accomodation accomodation) {
         accomodationsList.add(accomodation);
     }
+
+    public void addActivity(Activities activity) {activitiesList.add(activity);}
 
         // GETTERS
 
@@ -66,18 +66,6 @@ public class Trip {
 
     public  List<Activities>  getActivitiesList() {
         return activitiesList;
-    }
-
-    public List<Travelers> getTravelersList() {
-        return travelersList;
-    }
-
-        // SETTERS
-
-    public void setActivitiesList(List<Travelers> travelersList) {
-        for (Travelers traveler : travelersList) {
-            this.activitiesList.addAll(traveler.getActivities());
-        }
     }
 
     @Override

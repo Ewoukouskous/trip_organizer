@@ -25,8 +25,6 @@ public class TripOrganizer {
     public List<Object> getSortedTimelineElements(Trip trip) {
         List<Object> elements = new ArrayList<>();
 
-        trip.setActivitiesList(trip.getTravelersList());
-
         elements.addAll(trip.getTransportsList());
         elements.addAll(trip.getAccomodationsList());
         elements.addAll(trip.getActivitiesList());

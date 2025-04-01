@@ -110,7 +110,7 @@ public class ActivityEditorFrame extends JFrame {
 
             // Add the object to the trip selected
             if (activity != null) {
-                trip.getActivitiesList().add(activity);
+                trip.addActivity(activity);
                 JOptionPane.showMessageDialog(this, "Activité ajoutée avec succès !");
                 dispose();
             }
