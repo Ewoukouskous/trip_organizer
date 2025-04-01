@@ -14,6 +14,9 @@ public class MainFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        ImageIcon appIcon = new ImageIcon("src/fr/ynov/gui/assets/icon.png");
+        setIconImage(appIcon.getImage());
+
             // The card layout will be a sort of "manager" which will display the selected "pages" when the code ask for it
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
