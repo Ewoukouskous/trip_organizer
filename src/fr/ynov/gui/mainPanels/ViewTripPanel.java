@@ -1,5 +1,8 @@
-package fr.ynov.gui;
+package fr.ynov.gui.mainPanels;
 
+import fr.ynov.gui.utils.Header;
+import fr.ynov.gui.modified.ModernScrollBarUI;
+import fr.ynov.gui.modified.RoundedPanel;
 import fr.ynov.models.Trip;
 import fr.ynov.models.TripOrganizer;
 
@@ -35,6 +38,7 @@ public class ViewTripPanel extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
+        // It will get all the elements of a trip and will display them on a timeline in the view trip panel ( sorted by dates )
     public void setTripDetails(Trip trip) {
         if (trip == null) {
             System.err.println("Erreur : trip est null !");

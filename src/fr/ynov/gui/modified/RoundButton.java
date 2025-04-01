@@ -1,4 +1,4 @@
-package fr.ynov.gui;
+package fr.ynov.gui.modified;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ public class RoundButton extends JButton {
         setContentAreaFilled(false);
         setFocusPainted(false);
         setBorderPainted(false);
-        setPreferredSize(new Dimension(70, 70)); // Taille du bouton
+        setPreferredSize(new Dimension(70, 70));
     }
 
     @Override

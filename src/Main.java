@@ -1,4 +1,4 @@
-import fr.ynov.gui.MainFrame;
+import fr.ynov.gui.mainPanels.MainFrame;
 import fr.ynov.models.Trip;
 import fr.ynov.models.TripOrganizer;
 

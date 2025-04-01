@@ -1,5 +1,7 @@
-package fr.ynov.gui;
+package fr.ynov.gui.mainPanels;
 
+import fr.ynov.gui.utils.Header;
+import fr.ynov.gui.modified.RoundButton;
 import fr.ynov.models.Trip;
 import fr.ynov.models.TripOrganizer;
 
@@ -26,7 +28,6 @@ public class HomePanel extends JPanel {
         setBackground(new Color(202, 240, 248));
         setName("homePanel");
 
-        // Initialisation du Header
         Header headerPanel = new Header(cardLayout, mainPanel);
 
         // Footer avec bouton d'ajout
@@ -40,7 +41,6 @@ public class HomePanel extends JPanel {
         addTripButton.setForeground(new Color(202, 240, 248));
         footerPanel.add(addTripButton, BorderLayout.EAST);
 
-        // ComboBox pour sélectionner un voyage
         tripComboBox = new JComboBox<>();
         updateTripComboBox();
 
@@ -50,34 +50,27 @@ public class HomePanel extends JPanel {
 
         add(comboBoxPanel, BorderLayout.NORTH);
 
-        // Initialisation de TripsPanel
         tripsPanel = new TripsPanel(tripOrganizer, cardLayout, mainPanel, viewTripPanel);
         tripsPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
 
-        // Ajout des composants
         add(headerPanel, BorderLayout.NORTH);
         add(tripsPanel, BorderLayout.CENTER);
         add(footerPanel, BorderLayout.SOUTH);
 
-        // Action du bouton pour ouvrir CreateTripFrame
         addTripButton.addActionListener(e -> cardLayout.show(mainPanel, "addTrip"));
     }
 
+        // With this function we will update the panel who display all the trips
     public void refreshTripsPanel() {
-        // Supprime l'ancien TripsPanel
         remove(tripsPanel);
 
-        // Crée un nouveau TripsPanel
         tripsPanel = new TripsPanel(this.tripOrganizer, cardLayout, mainPanel, viewTripPanel);
         tripsPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 0, 0));
 
-        // Ajoute le nouveau TripsPanel
         add(tripsPanel, BorderLayout.CENTER);
 
-        // Met à jour la ComboBox
         updateTripComboBox();
 
-        // Rafraîchissement
         revalidate();
         repaint();
     }

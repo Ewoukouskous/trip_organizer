@@ -1,8 +1,8 @@
 package fr.ynov.gui.tripEditor;
 
-import fr.ynov.gui.AddTripPanel;
-import fr.ynov.gui.Button;
-import fr.ynov.gui.HomePanel;
+import fr.ynov.gui.mainPanels.AddTripPanel;
+import fr.ynov.gui.utils.Button;
+import fr.ynov.gui.mainPanels.HomePanel;
 import fr.ynov.models.Trip;
 import fr.ynov.models.TripOrganizer;
 
@@ -18,6 +18,7 @@ public class CreateTripFrame extends JFrame {
     private final JTextField beginDateField;
     private final JTextField endDateField;
 
+    // Constructor of the Frame
     public CreateTripFrame(TripOrganizer tripOrganizer, JPanel mainPanel, HomePanel homePanel, AddTripPanel addTripPanel) {
         setTitle("Créer un Nouveau Voyage");
         setSize(400, 300);
@@ -26,12 +27,19 @@ public class CreateTripFrame extends JFrame {
         getContentPane().setBackground(new Color(202, 240, 248));
         setLayout(new GridBagLayout());
 
+        // The GridBagConstraints will define the margin of an element
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
+        // Creation of the component for the frame
+
         JLabel titleLabel = new JLabel("Créer un Nouveau Voyage", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
+            // define some parameter for the margin
+                // gridx is for the column where the component will be placed
+                // gridy for the line
+                // and gridwidth for the number of column
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
         add(titleLabel, gbc);
 
@@ -73,7 +81,6 @@ public class CreateTripFrame extends JFrame {
 
         JButton cancelButton = new Button("Annuler");
         cancelButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        cancelButton.setBackground(new Color(220, 53, 69));
         cancelButton.setForeground(Color.WHITE);
         cancelButton.setFocusPainted(false);
         cancelButton.addActionListener(e -> dispose());
@@ -87,8 +94,10 @@ public class CreateTripFrame extends JFrame {
         setVisible(true);
     }
 
+    // Get all the parameters entered in the text fields for the creation of trip
     private void createTrip(TripOrganizer tripOrganizer, JPanel mainPanel, HomePanel homePanel) {
         try {
+            // get the parameters
             String departure = departureField.getText();
             String arrival = arrivalField.getText();
             LocalDate beginDate = LocalDate.parse(beginDateField.getText());
@@ -103,6 +112,7 @@ public class CreateTripFrame extends JFrame {
                 return;
             }
 
+            // Create the object with the parameters obtained
             Trip newTrip = new Trip(departure, arrival, beginDate, endDate);
             tripOrganizer.addTrip(newTrip);
             homePanel.updateTripComboBox();
@@ -121,6 +131,8 @@ public class CreateTripFrame extends JFrame {
                 homePanel.revalidate();
                 homePanel.repaint();
             }
+
+            // If there's an error we catch it and display it in an error message
         } catch (DateTimeParseException ex) {
             JOptionPane.showMessageDialog(this, "Format de date incorrect ! Utilisez YYYY-MM-DD.", "Erreur", JOptionPane.ERROR_MESSAGE);
         }

@@ -1,6 +1,6 @@
 package fr.ynov.gui.tripEditor;
 
-import fr.ynov.gui.Button;
+import fr.ynov.gui.utils.Button;
 import fr.ynov.models.Trip;
 import fr.ynov.models.activities.*;
 
@@ -17,6 +17,7 @@ public class ActivityEditorFrame extends JFrame {
     private final JTextField priceField;
     private final JTextField dateField;
 
+        // Constructor of the Frame
     public ActivityEditorFrame(Trip trip) {
         this.trip = trip;
 
@@ -27,12 +28,19 @@ public class ActivityEditorFrame extends JFrame {
         getContentPane().setBackground(new Color(202, 240, 248));
         setLayout(new GridBagLayout());
 
+            // The GridBagConstraints will define the margin of an element
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
+            // Creation of the component for the frame
+
         JLabel titleLabel = new JLabel("Ajouter une Activité", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
+            // define some parameter for the margin
+                // gridx is for the column where the component will be placed
+                // gridy for the line
+                // and gridwidth for the number of column
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
         add(titleLabel, gbc);
 
@@ -81,14 +89,17 @@ public class ActivityEditorFrame extends JFrame {
         setVisible(true);
     }
 
+        // Get all the parameters entered in the text fields for the creation of an activity
     private void addActivity() {
         try {
+                // get the parameters
             String selectedType = (String) activityTypeComboBox.getSelectedItem();
             String name = nameField.getText();
             String city = cityField.getText();
             int price = Integer.parseInt(priceField.getText());
             LocalDate date = LocalDate.parse(dateField.getText());
 
+            // Create the object with the parameters obtained
             assert selectedType != null;
             Activities activity = switch (selectedType) {
                 case "Sport" -> new Sport(1, name, city, price, date);
@@ -97,11 +108,14 @@ public class ActivityEditorFrame extends JFrame {
                 default -> null;
             };
 
+            // Add the object to the trip selected
             if (activity != null) {
                 trip.getActivitiesList().add(activity);
                 JOptionPane.showMessageDialog(this, "Activité ajoutée avec succès !");
                 dispose();
             }
+
+            // If there's an error we catch it and display it in an error message
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Erreur : Prix invalide !", "Erreur", JOptionPane.ERROR_MESSAGE);
         } catch (DateTimeParseException e) {

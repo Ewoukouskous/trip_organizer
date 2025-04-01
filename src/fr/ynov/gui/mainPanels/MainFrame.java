@@ -1,4 +1,4 @@
-package fr.ynov.gui;
+package fr.ynov.gui.mainPanels;
 
 import fr.ynov.models.TripOrganizer;
 
@@ -14,9 +14,11 @@ public class MainFrame extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+            // The card layout will be a sort of "manager" which will display the selected "pages" when the code ask for it
         CardLayout cardLayout = new CardLayout();
         JPanel mainPanel = new JPanel(cardLayout);
 
+            // Here, there's all the pages I will use
         ViewTripPanel viewTripPanel = new ViewTripPanel(cardLayout, mainPanel, tripOrganizer);
         HomePanel homePanel = new HomePanel(cardLayout, mainPanel, tripOrganizer, viewTripPanel);
         AddTripPanel addTripPanel = new AddTripPanel(cardLayout, mainPanel, tripOrganizer, homePanel);

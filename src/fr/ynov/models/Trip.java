@@ -38,6 +38,8 @@ public class Trip {
         accomodationsList.add(accomodation);
     }
 
+        // GETTERS
+
     public String getDeparture() {
         return departure;
     }
@@ -69,6 +71,8 @@ public class Trip {
     public List<Travelers> getTravelersList() {
         return travelersList;
     }
+
+        // SETTERS
 
     public void setActivitiesList(List<Travelers> travelersList) {
         for (Travelers traveler : travelersList) {

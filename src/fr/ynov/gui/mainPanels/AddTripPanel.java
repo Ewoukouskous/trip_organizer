@@ -1,5 +1,7 @@
-package fr.ynov.gui;
+package fr.ynov.gui.mainPanels;
 
+import fr.ynov.gui.utils.Button;
+import fr.ynov.gui.utils.Header;
 import fr.ynov.gui.tripEditor.AccomodationEditorFrame;
 import fr.ynov.gui.tripEditor.ActivityEditorFrame;
 import fr.ynov.gui.tripEditor.CreateTripFrame;
@@ -21,11 +23,13 @@ public class AddTripPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(new Color(202, 240, 248));
 
-        // Header
+            // HEADER
+
         Header header = new Header(cardLayout, mainPanel);
         add(header, BorderLayout.NORTH);
 
-        // Conteneur principal
+            // BODY
+
         JPanel bodyPanel = new JPanel(new GridBagLayout());
         bodyPanel.setBackground(new Color(202, 240, 248));
 
@@ -35,7 +39,6 @@ public class AddTripPanel extends JPanel {
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.CENTER;
 
-        // Panel principal (sélection voyage)
         JPanel topPanel = new JPanel(new GridBagLayout());
         topPanel.setBackground(new Color(202, 240, 248));
         GridBagConstraints topGbc = new GridBagConstraints();
@@ -62,11 +65,9 @@ public class AddTripPanel extends JPanel {
         gbc.gridy = 0;
         bodyPanel.add(topPanel, gbc);
 
-        // Espacement
         gbc.gridy++;
         bodyPanel.add(Box.createVerticalStrut(20), gbc);
 
-        // Panel des boutons d'actions (Centré avec GridBagLayout)
         JPanel buttonPanel = new JPanel(new GridBagLayout());
         buttonPanel.setBackground(new Color(202, 240, 248));
 
@@ -96,6 +97,7 @@ public class AddTripPanel extends JPanel {
         add(bodyPanel, BorderLayout.CENTER);
     }
 
+        // updateTripList() is a function called when we create a new trip for display it in the JComboBox of the trips
     public void updateTripList() {
         tripComboBox.removeAllItems();
         List<Trip> trips = tripOrganizer.getTrips();
@@ -103,6 +105,8 @@ public class AddTripPanel extends JPanel {
             tripComboBox.addItem(trip);
         }
     }
+
+        // It will open the Frame for edit the trip
 
     private void openTransportEditor() {
         Trip selectedTrip = (Trip) tripComboBox.getSelectedItem();

@@ -16,6 +16,8 @@ public class TripOrganizer {
         trips.add(trip);
     }
 
+        // GETTERS
+
     public List<Trip> getTrips() {
         return trips;
     }

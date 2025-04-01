@@ -1,12 +1,12 @@
-package fr.ynov.gui;
+package fr.ynov.gui.utils;
 
 import java.awt.*;
 import javax.swing.JButton;
 
 public class Button extends JButton {
 
-    private final Color normalColor = new Color(0, 51, 102); // Bleu foncé
-    private final Color hoverColor = new Color(30, 144, 255); // Bleu vif au survol
+    private final Color normalColor = new Color(0, 51, 102);
+    private final Color hoverColor = new Color(30, 144, 255);
     private boolean isHovered = false;
 
     public Button(String text) {
@@ -18,7 +18,6 @@ public class Button extends JButton {
         setBorderPainted(false);
         setOpaque(false);
 
-        // Gestion du survol
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 isHovered = true;
@@ -39,9 +38,8 @@ public class Button extends JButton {
 
         int width = getWidth();
         int height = getHeight();
-        int arcSize = 20; // Arrondi des bords
+        int arcSize = 20;
 
-        // Définir la couleur de fond (normale ou survolée)
         g2d.setColor(isHovered ? hoverColor : normalColor);
         g2d.fillRoundRect(0, 0, width, height, arcSize, arcSize);
 

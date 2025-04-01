@@ -1,10 +1,10 @@
-package fr.ynov.gui;
+package fr.ynov.gui.modified;
 
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 
-class ModernScrollBarUI extends BasicScrollBarUI {
+public class ModernScrollBarUI extends BasicScrollBarUI {
     @Override
     protected void configureScrollBarColors() {
         this.thumbColor = new Color(0, 119, 182);

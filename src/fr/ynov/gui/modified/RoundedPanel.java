@@ -1,4 +1,4 @@
-package fr.ynov.gui;
+package fr.ynov.gui.modified;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ public class RoundedPanel extends JPanel {
 
     public RoundedPanel(int radius) {
         this.cornerRadius = radius;
-        setOpaque(false); // Fond transparent
+        setOpaque(false);
     }
 
     @Override

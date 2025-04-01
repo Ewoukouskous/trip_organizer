@@ -1,4 +1,6 @@
-package fr.ynov.gui;
+package fr.ynov.gui.utils;
+
+import fr.ynov.gui.modified.RoundedBottomPanel;
 
 import javax.swing.*;
 import java.awt.*;

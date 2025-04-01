@@ -1,5 +1,6 @@
-package fr.ynov.gui;
+package fr.ynov.gui.mainPanels;
 
+import fr.ynov.gui.modified.RoundedPanel;
 import fr.ynov.models.TripOrganizer;
 import fr.ynov.models.Trip;
 
@@ -26,6 +27,7 @@ public class TripsPanel extends JPanel {
         updateTrips();
     }
 
+        // This function will update the trip list everytime we go on the home page
     public void updateTrips() {
         removeAll();
 
@@ -39,6 +41,7 @@ public class TripsPanel extends JPanel {
         repaint();
     }
 
+        // This function will create a card for the trip that contains an icon, the departure and the arrival and the trip dates
     private JPanel createTripCard(Trip trip) {
         RoundedPanel tripPanel = new RoundedPanel(20);
         tripPanel.setPreferredSize(new Dimension(350, 100));
@@ -79,11 +82,9 @@ public class TripsPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Trip sélectionné: " + trip.getDeparture() + " → " + trip.getArrival());
 
-                // Met à jour les détails du trip
                 viewTripPanel.setTripDetails(trip);
                 System.out.println("Mise à jour du ViewTripPanel avec : " + trip.getDeparture() + " → " + trip.getArrival());
 
-                // Change de page vers "viewTrip"
                 cardLayout.show(mainPanel, "viewTrip");
                 System.out.println("Changement de page réussi !");
             }
