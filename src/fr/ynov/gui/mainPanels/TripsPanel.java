@@ -47,6 +47,7 @@ public class TripsPanel extends JPanel {
             tripPanel.setPreferredSize(new Dimension(350, 100));
             tripPanel.setBackground(Color.WHITE);
             tripPanel.setMaximumSize(new Dimension(350, 100));
+            tripPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
             // Icon panel
             JPanel imagePanel = new JPanel(new GridBagLayout());
