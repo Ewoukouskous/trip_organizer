@@ -6,21 +6,21 @@ ___
 
 ## Table of contents : 
 
-1. [Trip Organizer]()
-2. [Installation]()
-3. [Features]()<br>
-    3.1 [Create and edit a trip]() <br>
-    3.2 [See the trip details in timeline]()
-4. [Next Features]() <br>
-    4.1 [Save system]()<br>
-    4.2 [Budget system]()<br>
-    4.3 [Travelers system]()
-5. [Credits]()
-6. [Appendix]()
+1. [🚀 Trip Organizer](#trip-organizer)
+2. [🔧 Installation](#installation)
+3. [✨ Features](#features)<br>
+   3.1 [📝 Create and edit a trip](#create-and-edit-a-trip) <br>
+   3.2 [📅 See the trip details in timeline](#see-the-trip-details)
+4. [🔮 Next Features](#next-features)<br>
+   4.1 [💾 Save system](#save-system)<br>
+   4.2 [💰 Budget system](#budget-system)<br>
+   4.3 [👥 Travelers system](#travelers-system)
+5. [🎉 Credits](#credits)
+6. [📚 Appendix](#appendix)
 
 ___
 
-## Trip Organizer
+## 🚀 Trip Organizer
 
 Tired of messy trip planning? **Trip Organizer** simplifies your travel 
 experience by organizing every detail in one place. Even if it's a transport, 
@@ -35,7 +35,7 @@ Say goodbye to travel stress, plan smarter with **Trip Organizer**!
 
 ___ 
 
-## Installation
+## 🔧 Installation
 
 For install and using Trip Organizer, don't forget to add Git and Java on your 
 computer !
@@ -52,11 +52,11 @@ And start the Main in your IDE !
 
 ___
 
-## Features
+## ✨ Features
 
 ---
 
-### Create and edit a trip
+### 📝 Create and edit a trip
 
 In Trip Organizer, the creation and the edition of a trip is simple. Just
 click on the "+" button and follow the steps !
@@ -72,7 +72,7 @@ whatever you need to add
 
 --- 
 
-### See you trip details
+### 📅 See you trip details
 
 All your trip's data are centralized in one section, 
 
@@ -86,11 +86,11 @@ data from the elements
 
 ___
 
-## Next features
+## 🔮 Next features
 
 ---
 
-### Save system
+### 💾 Save system
 
 I'd like in the future implements a file system in JSON by using **Jackson** 
 or **GSON**. It'll permit to the user to not lose all their trips by just closing
@@ -98,7 +98,7 @@ the app
 
 ---
 
-### Budget system
+### 💰 Budget system
 
 In the future I'd like to implement a future that'll permit to the user
 to adjust his budget on the trip.
@@ -110,7 +110,7 @@ give more information to the user
 
 --- 
 
-### Travelers system
+### 👥 Travelers system
 
 By using a multi account I'd like to implement an update on the travelers.
 
@@ -119,7 +119,7 @@ the trip creator to manage. The travelers can also join activities they want.
 
 ___ 
 
-## Credits
+## 🎉 Credits
 
 - [@Nino Lefebvre]()
 
@@ -133,6 +133,6 @@ Special thanks :
 
 ___ 
 
-## Appendix
+## 📚 Appendix
 
 ![Class diagram](UML_TripOrganizer.drawio.png) that represent my first thoughts
